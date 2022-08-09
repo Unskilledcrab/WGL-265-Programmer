@@ -5,15 +5,18 @@ using UnityEngine.UI;
 
 public class ActionManager : MonoBehaviour
 {
-    private Dictionary<string, ActionBase> _actions = new();
     public TMPro.TMP_InputField InputField;
+    public Action[] Actions;
+
+    private Dictionary<string, Action> _actions = new();
     private List<string> _previousCommands = new();
     private int _index = 0;
 
     private void Start()
     {
-        foreach (var action in GetComponentsInChildren<ActionBase>())
+        foreach (var action in Actions)
         {
+            action.SetParent(this);
             foreach (var commandName in action.CommandNames)
             {
                 if (!_actions.TryAdd(commandName.ToLower(), action))
@@ -26,8 +29,8 @@ public class ActionManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            _index = _previousCommands.Count - 1;
             ParseInput();
+            _index = _previousCommands.Count > 0 ? _previousCommands.Count - 1 : 0;
             InputField.text = string.Empty;
             InputField.ActivateInputField();
         }
@@ -36,22 +39,22 @@ public class ActionManager : MonoBehaviour
         {
             if (_previousCommands.Any())
             {
+                InputField.text = _previousCommands[_index];
                 if (_index != 0)
                 {
                     _index--;
                 }
-                InputField.text = _previousCommands[_index];
             }
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (_previousCommands.Any())
             {
+                InputField.text = _previousCommands[_index];
                 if (_index != _previousCommands.Count - 1)
                 {
                     _index++;
                 }
-                InputField.text = _previousCommands[_index];
             }
         }
     }
@@ -91,7 +94,7 @@ public class ActionManager : MonoBehaviour
             switch (type)
             {
                 case CommandType.Manual:
-                    action.Action();
+                    action.CallAction();
                     break;
                 case CommandType.Iterative:
                     action.StartIterativeAction(int.Parse(number));

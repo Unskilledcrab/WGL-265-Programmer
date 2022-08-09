@@ -4,38 +4,27 @@ public class Player : MonoBehaviour
 {
     public float Speed = 2.0f;
 
-    private Trans _target;
+    private Rigidbody _rb;
 
     private void Awake()
     {
-        _target = new Trans(transform);
-    }
-
-    private void Update()
-    {
-        var step = Speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, _target.position, step);
+        _rb = GetComponent<Rigidbody>();
     }
 
     public void Left()
     {
-        _target.position = _target.position + Vector3.left;
+        _rb.AddForce(Vector3.left * Speed);
     }
     public void Right()
     {
-        _target.position = _target.position + Vector3.right;
+        _rb.AddForce(Vector3.right * Speed);
     }
     public void Up()
     {
-        _target.position = _target.position + Vector3.up;
+        _rb.AddForce(Vector3.up * Speed);
     }
     public void Down()
     {
-        _target.position = _target.position + Vector3.down;
-    }
-
-    public void Jump()
-    {
-        _target.position = _target.position + Vector3.up;
+        _rb.AddForce(Vector3.down * Speed);
     }
 }
