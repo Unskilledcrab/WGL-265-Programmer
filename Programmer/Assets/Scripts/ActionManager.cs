@@ -7,6 +7,8 @@ public class ActionManager : MonoBehaviour
 {
     private Dictionary<string, ActionBase> _actions = new();
     public TMPro.TMP_InputField InputField;
+    private List<string> _previousCommands = new();
+    private int _index = 0;
 
     private void Start()
     {
@@ -24,9 +26,33 @@ public class ActionManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
+            _index = _previousCommands.Count - 1;
             ParseInput();
             InputField.text = string.Empty;
             InputField.ActivateInputField();
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (_previousCommands.Any())
+            {
+                if (_index != 0)
+                {
+                    _index--;
+                }
+                InputField.text = _previousCommands[_index];
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (_previousCommands.Any())
+            {
+                if (_index != _previousCommands.Count - 1)
+                {
+                    _index++;
+                }
+                InputField.text = _previousCommands[_index];
+            }
         }
     }
 
@@ -40,6 +66,7 @@ public class ActionManager : MonoBehaviour
             {
                 action.StopAllActions();
             }
+            _previousCommands.Add(command);
             return;
         }
 
@@ -82,6 +109,7 @@ public class ActionManager : MonoBehaviour
                     break;
             }
         }
+        _previousCommands.Add(command);
     }
 
     private CommandType GetCommandType(string command)

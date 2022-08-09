@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public float Speed = 2.0f;
 
-    private Transform _target;
+    private Trans _target;
 
     private void Awake()
     {
-        _target = transform;
+        _target = new Trans(transform);
     }
 
     private void Update()
