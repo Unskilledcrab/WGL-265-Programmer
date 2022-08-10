@@ -413,7 +413,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 1.9238477, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -484,7 +484,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Waves:
   - Count: 50
-    Delay: 0.72
+    Delay: 0.3
+    Enemy: {fileID: 6830276067777866906, guid: 48ac9e39adf710b4b8a4f41cc21feb5b, type: 3}
+  - Count: 100
+    Delay: 0.1
+    Enemy: {fileID: 6830276067777866906, guid: 48ac9e39adf710b4b8a4f41cc21feb5b, type: 3}
+  - Count: 100
+    Delay: 0.01
     Enemy: {fileID: 6830276067777866906, guid: 48ac9e39adf710b4b8a4f41cc21feb5b, type: 3}
 --- !u!1 &169333770
 GameObject:

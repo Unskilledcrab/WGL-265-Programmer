@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    public float Force = 40f;
+    public float Force = 1200f;
     private ParticleSystem _ps;
-    private float _radius = 20f;
+    private float _radius;
     private List<Rigidbody> _rbsInRange = new();
 
     private void Start()

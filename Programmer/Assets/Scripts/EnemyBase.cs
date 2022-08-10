@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class Constants
 {
-    public static int ZBoundary = -120;
+    public static int ZBoundary = -10;
 }
 
 public class EnemyBase : MonoBehaviour
@@ -35,7 +35,7 @@ public class EnemyBase : MonoBehaviour
         if (Math.Abs(transform.position.z - Constants.ZBoundary) < 0.1f)
         {
             OnDisable?.Invoke(this, EventArgs.Empty);
-            gameObject.SetActive(false);
+            this.ReturnToPool();
         }
     }
 }

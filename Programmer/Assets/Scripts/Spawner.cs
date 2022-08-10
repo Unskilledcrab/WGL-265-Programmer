@@ -13,14 +13,20 @@ public class Spawner : MonoBehaviour
 
     IEnumerator SpawnWaves()
     {
-        foreach (var wave in Waves)
+        while (true)
         {
-            for (int i = 0; i < wave.Count; i++)
+            foreach (var wave in Waves)
             {
-                Instantiate(wave.Enemy, transform);
-                yield return new WaitForSeconds(wave.Delay);
+                for (int i = 0; i < wave.Count; i++)
+                {
+                    var enemy = wave.Enemy.GetFromPool();
+                    enemy.transform.SetParent(transform);
+                    enemy.transform.position = transform.position;
+                    enemy.gameObject.SetActive(true);
+                    yield return new WaitForSeconds(wave.Delay);
+                }
+                yield return new WaitForSeconds(5);
             }
-            yield return new WaitForSeconds(wave.Delay * 4);
         }
     }
 }

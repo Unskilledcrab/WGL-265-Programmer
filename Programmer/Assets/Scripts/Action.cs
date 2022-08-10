@@ -11,6 +11,7 @@ public class Action
     public string[] CommandNames;
     public UnityEvent Event;
     public float IteratorDelay = 1f;
+    public float MinimumEndlessDelay = 3f;
         
     private MonoBehaviour _parent;
     private Dictionary<string, IEnumerator> _activeCoroutines = new();
@@ -29,55 +30,56 @@ public class Action
 
     public void StopAction(Func<bool> condition)
     {
-        InternalStopAction(condition);
+        InternalStopAction("condition");
     }
     public void StopAction(int condition)
     {
-        InternalStopAction(condition);
+        InternalStopAction("iterator");
     }
     public void StopAction(float condition)
     {
-        InternalStopAction(condition);
+        InternalStopAction("endless");
     }
     public void StopAllActions()
     {
-        Debug.Log($"{_commands}: Stopping");
+        Debug.Log($"{_commands}: Stopping All");
         _parent.StopAllCoroutines();
         _activeCoroutines.Clear();
     }
     public void StartConditionAction(Func<bool> condition)
     {
-        Debug.Log($"{_commands}: Calling condition {condition}");
         var coroutine = RunAction(condition);
-        InternalStartAction(condition.ToString(), coroutine);
+        InternalStartAction("condition", coroutine);
     }
 
     public void StartIterativeAction(int iterator)
     {
-        Debug.Log($"{_commands}: Calling iterator {iterator} times");
         var coroutine = RunAction(iterator);
-        InternalStartAction(iterator.ToString(), coroutine);
+        InternalStartAction("iterator", coroutine);
     }
     public void StartEndlessAction(float seconds)
     {
-        Debug.Log($"{_commands}: Calling endless {seconds} second delay");
         var coroutine = RunAction(seconds);
-        InternalStartAction(seconds.ToString(), coroutine);
+        InternalStartAction("endless", coroutine);
     }
 
-    private void InternalStopAction(object key)
+    private void InternalStopAction(string condition)
     {
-        if (_activeCoroutines.TryGetValue(key.ToString(), out var coroutine))
+        var key = $"[{_commands}]{condition}";
+        if (_activeCoroutines.TryGetValue(key, out var coroutine))
         {
             _parent.StopCoroutine(coroutine);
-            _activeCoroutines.Remove(key.ToString());
+            _activeCoroutines.Remove(key);
+            Debug.Log($"Stopped: {key}");
         }
     }
     private void InternalStartAction(string condition, IEnumerator coroutine)
     {
+        var key = $"[{_commands}]{condition}";
         InternalStopAction(condition);
-        _activeCoroutines.TryAdd(condition.ToString(), coroutine);
+        _activeCoroutines.TryAdd(key, coroutine);
         _parent.StartCoroutine(coroutine);
+        Debug.Log($"Started: {key}");
     }
 
     private IEnumerator RunAction(Func<bool> condition)
@@ -100,6 +102,9 @@ public class Action
 
     private IEnumerator RunAction(float seconds)
     {
+        if (seconds < MinimumEndlessDelay)
+            seconds = MinimumEndlessDelay;
+
         while (true)
         {
             CallAction();

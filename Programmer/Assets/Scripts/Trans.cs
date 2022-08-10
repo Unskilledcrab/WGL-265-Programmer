@@ -1,5 +1,15 @@
 ﻿using UnityEngine;
 
+public static class TransformExtensions
+{
+    public static void CopyFrom(this Transform to, Transform from)
+    {
+        to.position = from.position;
+        to.rotation = from.rotation;
+        to.localScale = from.localScale;
+    }
+}
+
 public class Trans
 {
 
