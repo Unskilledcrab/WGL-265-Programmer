@@ -4,6 +4,7 @@
 public class Wave
 {
     public int Count;
-    public float Delay;
-    public EnemyBase Enemy;
+    public float NextObstacleDelay = 0.5f;
+    public float NextWaveDelay = 5f;
+    public Obstacle Obstactle;
 }

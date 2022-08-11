@@ -6,7 +6,7 @@ public static class Constants
     public static int ZBoundary = -10;
 }
 
-public class EnemyBase : MonoBehaviour
+public class EnemyBase : Obstacle
 {
     public float Speed = 2.0f;
     public float Range = 15;
@@ -14,13 +14,15 @@ public class EnemyBase : MonoBehaviour
 
     private Rigidbody _rb;
 
-    private void Start()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
     }
 
-    private void OnEnable()
+    protected override void Enable()
     {
+        _rb.velocity = Vector3.zero;
+        _rb.angularVelocity = Vector3.zero;
         var xCoor = UnityEngine.Random.Range(-1 * Range, Range);
         transform.position = new Vector3(xCoor, transform.position.y, transform.position.z);
     }
@@ -28,14 +30,5 @@ public class EnemyBase : MonoBehaviour
     private void FixedUpdate()
     {
         _rb.MovePosition(transform.position + (Vector3.back * Speed * Time.deltaTime));
-    }
-
-    private void Update()
-    {
-        if (Math.Abs(transform.position.z - Constants.ZBoundary) < 0.1f)
-        {
-            OnDisable?.Invoke(this, EventArgs.Empty);
-            this.ReturnToPool();
-        }
     }
 }

@@ -19,13 +19,13 @@ public class Spawner : MonoBehaviour
             {
                 for (int i = 0; i < wave.Count; i++)
                 {
-                    var enemy = wave.Enemy.GetFromPool();
+                    var enemy = wave.Obstactle.GetFromPool();
                     enemy.transform.SetParent(transform);
-                    enemy.transform.position = transform.position;
+                    enemy.transform.SetPositionAndRotation(transform.position, transform.rotation);
                     enemy.gameObject.SetActive(true);
-                    yield return new WaitForSeconds(wave.Delay);
+                    yield return new WaitForSeconds(wave.NextObstacleDelay);
                 }
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(wave.NextWaveDelay);
             }
         }
     }

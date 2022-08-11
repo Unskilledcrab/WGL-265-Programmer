@@ -23,6 +23,7 @@ public class ActionManager : MonoBehaviour
                     Debug.LogError($"The command name [{commandName}] is already taken");
             }
         }
+        InputField.ActivateInputField();
     }
 
     private void Update()

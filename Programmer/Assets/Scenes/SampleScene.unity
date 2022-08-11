@@ -413,7 +413,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9238477, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -429,7 +429,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114194927}
-  m_LocalRotation: {x: 0.22975291, y: -0.000000018722702, z: 0.00000000441983, w: 0.973249}
+  m_LocalRotation: {x: 0.22975291, y: 0.000000018722702, z: -0.00000000441983, w: 0.973249}
   m_LocalPosition: {x: 0, y: 5.590995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -484,45 +484,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Waves:
   - Count: 50
-    Delay: 0.3
-    Enemy: {fileID: 3405151390547995080, guid: 48ac9e39adf710b4b8a4f41cc21feb5b, type: 3}
+    NextObstacleDelay: 0.5
+    NextWaveDelay: 0.04
+    Obstactle: {fileID: 3405151390547995080, guid: 48ac9e39adf710b4b8a4f41cc21feb5b, type: 3}
   - Count: 100
-    Delay: 0.1
-    Enemy: {fileID: 3405151390547995080, guid: 48ac9e39adf710b4b8a4f41cc21feb5b, type: 3}
-  - Count: 100
-    Delay: 0.01
-    Enemy: {fileID: 3405151390547995080, guid: 48ac9e39adf710b4b8a4f41cc21feb5b, type: 3}
---- !u!1 &166607063
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 166607064}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &166607064
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166607063}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -11.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+    NextObstacleDelay: 0.5
+    NextWaveDelay: 0.07
+    Obstactle: {fileID: 3405151390547995080, guid: 48ac9e39adf710b4b8a4f41cc21feb5b, type: 3}
+  - Count: 1000
+    NextObstacleDelay: 0.001
+    NextWaveDelay: 0.25
+    Obstactle: {fileID: 3405151390547995080, guid: 48ac9e39adf710b4b8a4f41cc21feb5b, type: 3}
 --- !u!1 &169333770
 GameObject:
   m_ObjectHideFlags: 3
@@ -1119,7 +1091,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.22975291, y: -0.000000018722702, z: 0.00000000441983, w: 0.973249}
+  m_LocalRotation: {x: 0.22975291, y: 0.000000018722702, z: -0.00000000441983, w: 0.973249}
   m_LocalPosition: {x: 0, y: 5.590995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
