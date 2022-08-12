@@ -413,7 +413,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 1.9238477, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -429,7 +429,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114194927}
-  m_LocalRotation: {x: 0.22975291, y: 0.000000018722702, z: -0.00000000441983, w: 0.973249}
+  m_LocalRotation: {x: 0.06504125, y: 0.000000019196584, z: -0.0000000012512194, w: 0.9978826}
   m_LocalPosition: {x: 0, y: 5.590995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -484,17 +484,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Waves:
   - Count: 50
-    NextObstacleDelay: 0.5
-    NextWaveDelay: 0.04
+    NextObstacleDelay: 0.05
+    NextWaveDelay: 1
     Obstactle: {fileID: 3405151390547995080, guid: 48ac9e39adf710b4b8a4f41cc21feb5b, type: 3}
-  - Count: 100
-    NextObstacleDelay: 0.5
-    NextWaveDelay: 0.07
-    Obstactle: {fileID: 3405151390547995080, guid: 48ac9e39adf710b4b8a4f41cc21feb5b, type: 3}
-  - Count: 1000
-    NextObstacleDelay: 0.001
-    NextWaveDelay: 0.25
-    Obstactle: {fileID: 3405151390547995080, guid: 48ac9e39adf710b4b8a4f41cc21feb5b, type: 3}
+  - Count: 2
+    NextObstacleDelay: 5
+    NextWaveDelay: 3
+    Obstactle: {fileID: -6306036835391155671, guid: fb47ba06c9e09c745a8baaf91321103b, type: 3}
 --- !u!1 &169333770
 GameObject:
   m_ObjectHideFlags: 3
@@ -570,7 +566,7 @@ MonoBehaviour:
   m_HorizontalDamping: 0.5
   m_VerticalDamping: 0.5
   m_ScreenX: 0.5
-  m_ScreenY: 0.5
+  m_ScreenY: 0.8
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_SoftZoneWidth: 0.8
@@ -1091,7 +1087,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.22975291, y: 0.000000018722702, z: -0.00000000441983, w: 0.973249}
+  m_LocalRotation: {x: 0.06504125, y: 0.000000019196584, z: -0.0000000012512194, w: 0.9978826}
   m_LocalPosition: {x: 0, y: 5.590995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

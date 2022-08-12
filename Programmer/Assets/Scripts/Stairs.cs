@@ -1,11 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EnemyBase : Obstacle
+public class Stairs : Obstacle
 {
-    public float Speed = 2.0f;
-    public float Range = 15;
-
+    protected override float ZBoundary() => -100;
+    public float Speed = 10.0f;
     private Rigidbody _rb;
 
     private void Awake()
@@ -15,11 +13,9 @@ public class EnemyBase : Obstacle
 
     protected override void OnSpawn(Transform spawnPoint)
     {
-        transform.CopyFrom(spawnPoint);
+        transform.position = new Vector3(transform.position.x, transform.position.y, spawnPoint.position.z);
         _rb.velocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
-        var xCoor = UnityEngine.Random.Range(-1 * Range, Range);
-        transform.position = new Vector3(xCoor, transform.position.y, transform.position.z);
     }
 
     private void FixedUpdate()

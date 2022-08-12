@@ -21,8 +21,7 @@ public class Spawner : MonoBehaviour
                 {
                     var enemy = wave.Obstactle.GetFromPool();
                     enemy.transform.SetParent(transform);
-                    enemy.transform.SetPositionAndRotation(transform.position, transform.rotation);
-                    enemy.gameObject.SetActive(true);
+                    enemy.Spawn(transform);
                     yield return new WaitForSeconds(wave.NextObstacleDelay);
                 }
                 yield return new WaitForSeconds(wave.NextWaveDelay);
